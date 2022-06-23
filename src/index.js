@@ -1,6 +1,19 @@
 const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
+const db = require("./models");
+
+// connect to db
+db.sequelize.authenticate().then(() => {
+    logger.info("Connected to the database!");
+})
+.catch(err => {
+    logger.error("Cannot connect to the database!", err);
+    process.exit(1);
+});
+
+// sync
+db.sequelize.sync()
 
 let server = app.listen(config.port, () => {
     logger.info(`Listening to port ${config.port}`);

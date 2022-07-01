@@ -1,13 +1,12 @@
 const app = require('./app');
+const db = require("./models");
 const config = require('./config/config');
 const logger = require('./config/logger');
-const db = require("./models");
 
 // connect to db
 db.sequelize.authenticate().then(() => {
     logger.info("Connected to the database!");
-})
-.catch(err => {
+}).catch(err => {
     logger.error("Cannot connect to the database!", err);
     process.exit(1);
 });

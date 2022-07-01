@@ -12,6 +12,6 @@ const db = {
     sequelize : sequelize
 }
 
-db.todos = require("./todo.model.js")(sequelize, Sequelize);
+db.users = require("./user.model.js")(sequelize, Sequelize);
 
 module.exports = db;
